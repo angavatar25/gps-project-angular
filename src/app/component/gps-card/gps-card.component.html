@@ -1,0 +1,26 @@
+<div>
+  <div class="w-full bg-white grid grid-cols-5 p-3 rounded-md mb-5">
+    <div>
+      <p class="text-xs text-slate-400">Device ID</p>
+      <p>{{ gpsData && gpsData.deviceId ? gpsData.deviceId : null }}</p>
+    </div>
+    <div>
+      <p class="text-xs text-slate-400">Device Type</p>
+      <p>{{ gpsData && gpsData.deviceType ? gpsData.deviceType : null }}</p>
+    </div>
+    <div>
+      <p class="text-xs text-slate-400">Timestamp</p>
+      <p>{{ gpsData && gpsData.deviceType ? gpsData.timestamp : null }}</p>
+    </div>
+    <div>
+      <p class="text-xs text-slate-400">Location</p>
+      <p>{{ gpsData && gpsData.location ? gpsData.location : null }}</p>
+    </div>
+    <button
+      class="text-white bg-blue-500 p-2 rounded-md w-fit mx-auto text-sm"
+      (click)="handleToGpsDetailPage(gpsData && gpsData.deviceId)"
+    >
+      View Detail
+    </button>
+  </div>
+</div>
