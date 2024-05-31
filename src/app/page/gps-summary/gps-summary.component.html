@@ -10,6 +10,17 @@
           [gpsData]="item"
         ></app-gps-card>
       }
+
+      <div class="flex gap-4">
+        @for (i of totalPages; track $index) {
+          <button
+            class="p-3 rounded-md"
+            (click)="displayPage(i)"
+          >
+            {{ i }}
+          </button>
+        }
+      </div>
     </div>
   </div>
 </section>
