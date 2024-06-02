@@ -4,6 +4,32 @@
       <p class="text-2xl font-semibold">GPS Summary</p>
       <button class="text-sm text-white bg-red-500 h-fit p-2 rounded-md font-semibold my-auto">Log out</button>
     </div>
+    <div class="mt-5">
+      <div>
+        <div class="flex gap-4">
+          <input
+            type="text"
+            [(ngModel)]="searchKeyword"
+            placeholder="Enter keyword"
+            class="border border-gray-300 outline-none leading-10 pl-4 rounded-md w-full"
+          >
+          <button (click)="inputValue()" class="text-sm text-white bg-red-500 h-fit p-2 rounded-md font-semibold my-auto">Search</button>
+        </div>
+        <div class="mt-5">
+          <p for="">Search By</p>
+          <select
+            class="p-3 rounded-md mt-2 outline-none"
+            [(ngModel)]="selectedOption"
+          >
+            @for(option of optionsAvailable; track option) {
+              <option
+                [ngValue]="option"
+              >{{ option.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
     <div class="py-5">
       @for (item of gpsDataCollection; track $index) {
         <app-gps-card
@@ -12,12 +38,13 @@
       }
 
       <div class="flex gap-4">
-        @for (i of totalPages; track $index) {
+        @for (page of totalPages; track $index) {
           <button
             class="p-3 rounded-md"
-            (click)="displayPage(i)"
+            [ngClass]="{'bg-blue-600 text-white': currentPage === page}"
+            (click)="displayPage(page, gpsDataCollection)"
           >
-            {{ i }}
+            {{ page }}
           </button>
         }
       </div>
