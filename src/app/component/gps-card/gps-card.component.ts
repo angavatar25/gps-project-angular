@@ -20,9 +20,9 @@ export class GpsCardComponent {
 
   constructor(private router: Router) {}
 
-  handleToGpsDetailPage(deviceId: string | null | undefined) {
+  handleToGpsDetailPage(deviceId: string | null | undefined, location: string | null | undefined) {
     if (deviceId) {
-      this.router.navigate(['/gps-detail'], { queryParams: { deviceId }})
+      this.router.navigate(['/gps-detail'], { queryParams: { deviceId, location }})
     }
   }
 }

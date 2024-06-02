@@ -1,13 +1,67 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChartData, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import { GpsData } from '../../dummy/GPSData';
 
+interface TGpsData {
+  deviceId: string;
+  deviceType: string;
+  timestamp: string;
+  location: string;
+}
 @Component({
   selector: 'app-gps-detail',
   standalone: true,
-  imports: [],
+  imports: [BaseChartDirective],
   templateUrl: './gps-detail.component.html',
   styleUrl: './gps-detail.component.scss'
 })
+
 export class GpsDetailComponent {
-  
+  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  public pieChartType: ChartType = 'pie';
+  private getDeviceId = new URLSearchParams(window.location.search);
+  private deviceId = this.getDeviceId.get('deviceId');
+  private deviceLocation = this.getDeviceId.get('location');
+  private gpsFiltered = GpsData.filter(data => data.deviceId === this.deviceId);
+  private countedLocation = this.newGpsDataMap(this.gpsFiltered, 'location')
+  deviceFound = this.gpsFiltered.find((gps) => gps.deviceId === this.deviceId && gps.location === this.deviceLocation) || null;
+
+  public pieChartData: ChartData <'bar'> = {
+    labels: this.extractLabel(),
+    datasets: [{
+      data: this.extractData(),
+    }],
+  };
+
+  public newGpsDataMap(arr: TGpsData[], key: keyof TGpsData) {
+    const counts: Record<string, number> = {};
+    arr.forEach(obj => {
+      const value = obj[key];
+      if (typeof value === 'string') {
+        counts[value] = (counts[value] || 0) + 1;
+      }
+    });
+
+    return counts;
+  }
+
+  private extractData(): number[] {
+    const arrayValue: any[] = [];
+
+    Object.values(this.countedLocation).forEach((value)=> {
+      arrayValue.push(value)
+    });
+
+    return arrayValue;
+  }
+
+  private extractLabel(): string[] {
+    const labels: string[] = []
+    Object.keys(this.countedLocation).forEach((value, b)=> {
+      labels.push(value)
+    });
+
+    return labels;
+  }
 }
