@@ -34,11 +34,17 @@
       </div>
     </div>
     <div class="py-5">
-      @for (item of gpsDataCollection; track $index) {
-        <app-gps-card
-          [gpsData]="item"
-        ></app-gps-card>
-      }
+      <div *ngIf="gpsDataCollection.length === 0; else gpsTable">
+        <p class="text-2xl text-center font-bold">Data not found</p>
+      </div>
+
+      <ng-template #gpsTable>
+        @for (item of gpsDataCollection; track $index) {
+          <app-gps-card
+            [gpsData]="item"
+          ></app-gps-card>
+        }
+      </ng-template>
 
       <div class="flex gap-4">
         @for (page of totalPages; track $index) {
