@@ -48,9 +48,11 @@ export class GpsDetailComponent {
 
   private extractData(): number[] {
     const arrayValue: any[] = [];
+    const lengthOfData = this.gpsFiltered.length;
 
     Object.values(this.countedLocation).forEach((value)=> {
-      arrayValue.push(value)
+      const percentage = Math.ceil((value/lengthOfData) * 100);
+      arrayValue.push(percentage)
     });
 
     return arrayValue;
@@ -58,7 +60,8 @@ export class GpsDetailComponent {
 
   private extractLabel(): string[] {
     const labels: string[] = []
-    Object.keys(this.countedLocation).forEach((value, b)=> {
+
+    Object.keys(this.countedLocation).forEach((value)=> {
       labels.push(value)
     });
 
