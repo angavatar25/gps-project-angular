@@ -4,13 +4,7 @@ import { GpsData } from '../../dummy/GPSData';
 import { FormsModule } from '@angular/forms'
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
-
-interface TGPSData {
-  deviceId: string;
-  deviceType: string;
-  timestamp: string;
-  location: string;
-}
+import { TGpsData } from '../../interface/gps';
 
 @Component({
   selector: 'app-gps-summary',
@@ -37,7 +31,7 @@ export class GpsSummaryComponent {
     this.gpsDataCollection = GpsData.slice(this.start, this.end);
   }
 
-  displayPage(page: number, gpsData: TGPSData[]) {
+  displayPage(page: number, gpsData: TGpsData[]) {
     const start = (page - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     this.currentPage = page;

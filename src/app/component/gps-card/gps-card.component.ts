@@ -1,12 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface TGPSData {
-  deviceId: string;
-  deviceType: string;
-  timestamp: string;
-  location: string;
-}
+import { TGpsData } from '../../interface/gps';
 
 @Component({
   selector: 'app-gps-card',
@@ -16,7 +10,7 @@ interface TGPSData {
   styleUrl: './gps-card.component.scss'
 })
 export class GpsCardComponent {
-  @Input() gpsData?: TGPSData;
+  @Input() gpsData?: TGpsData;
 
   constructor(private router: Router) {}
 
