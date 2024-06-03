@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { GpsCardComponent } from '../../component/gps-card/gps-card.component';
 import { GpsData } from '../../dummy/GPSData';
 import { FormsModule } from '@angular/forms'
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 import { TGpsData } from '../../interface/gps';
 
 @Component({
   selector: 'app-gps-summary',
   standalone: true,
-  imports: [GpsCardComponent, FormsModule, NgClass],
+  imports: [GpsCardComponent, FormsModule, NgClass, CommonModule],
   templateUrl: './gps-summary.component.html',
   styleUrl: './gps-summary.component.scss'
 })
