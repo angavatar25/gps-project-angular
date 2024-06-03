@@ -23,6 +23,7 @@ export class GpsSummaryComponent {
   searchKeyword = '';
   optionsAvailable = [{ value: 'deviceId', label: 'Device ID' }, { value: 'deviceType', label: 'Device Type' }]
   selectedOption = this.optionsAvailable[0];
+  sortLocationAsc = true;
 
   constructor(private router: Router) {
     this.totalPages = this.generateNumbers(Math.ceil(this.gpsDataCollection.length / this.itemsPerPage));
@@ -34,12 +35,14 @@ export class GpsSummaryComponent {
   displayPage(page: number, gpsData: TGpsData[]) {
     const start = (page - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
+    this.start = start;
+    this.end = end;
     this.currentPage = page;
 
     if (!this.searchKeyword || this.searchKeyword === '') {
-      this.gpsDataCollection = GpsData.slice(start, end);  
+      this.gpsDataCollection = GpsData;  
     } else {
-      this.gpsDataCollection = gpsData.slice(start, end);
+      this.gpsDataCollection = gpsData;
     }
   }
 
@@ -55,6 +58,13 @@ export class GpsSummaryComponent {
 
     this.displayPage(1, filteredDevice)
     this.totalPages = this.generateNumbers(Math.ceil(filteredDevice.length / this.itemsPerPage));
+  }
+
+  sortByLocation() {
+    this.sortLocationAsc = !this.sortLocationAsc;
+    const sortLocation = GpsData.sort((a, b) => this.sortLocationAsc ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location));
+
+    this.displayPage(1 ,sortLocation);
   }
 
   generateNumbers(count: number): number[] {

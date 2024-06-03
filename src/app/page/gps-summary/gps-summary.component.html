@@ -39,7 +39,13 @@
       </div>
 
       <ng-template #gpsTable>
-        @for (item of gpsDataCollection; track $index) {
+        <div class="grid grid-cols-5 border-b border-gray-500 py-3 mb-3 text-gray-400">
+          <p>Device ID</p>
+          <p>Device Type</p>
+          <p>Timestamp</p>
+          <p class="cursor-pointer" (click)="sortByLocation()">Location</p>
+        </div>
+        @for (item of gpsDataCollection.slice(start, end); track $index) {
           <app-gps-card
             [gpsData]="item"
           ></app-gps-card>
