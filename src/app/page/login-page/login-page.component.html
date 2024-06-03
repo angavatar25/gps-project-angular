@@ -7,23 +7,38 @@
       <div class="">
         <p class="text-[40px] font-bold">Login</p>
         <p class="text-gray-400 mb-5">Welcome back! Please login to your account.</p>
-        <div>
-          <p class="mb-5">User Name</p>
-          <input
-            type="text"
-            placeholder="Enter username"
-            class="border border-gray-300 leading-10 pl-4 rounded-md w-full"
-          >
-        </div>
-        <div>
-          <p class="my-5">Password</p>
-          <input
-            type="password"
-            placeholder="Enter password"
-            class="border border-gray-300 leading-10 pl-4 rounded-md w-full"
-          >
-        </div>
-        <button class="w-full bg-blue-500 text-white leading-10 rounded-md mt-10">Login</button>
+        <form [formGroup]="myForm" (ngSubmit)="checkIfFormFilled() ? onSubmit() : null" novalidate>
+          <div>
+            <div>
+              <p class="mb-5">User Name</p>
+              <input
+                type="text"
+                placeholder="Enter username"
+                [(ngModel)]="userForm.username"
+                formControlName="username"
+                class="border border-gray-300 leading-10 pl-4 rounded-md w-full"
+              >
+              <app-error-msg [displayError]="isFieldValid('username')" errorMsg="Username is required"></app-error-msg>
+            </div>
+            <div>
+              <p class="my-5">Password</p>
+              <input
+                type="password"
+                placeholder="Enter password"
+                [(ngModel)]="userForm.password"
+                formControlName="password"
+                class="border border-gray-300 leading-10 pl-4 rounded-md w-full"
+              >
+              <app-error-msg [displayError]="isFieldValid('password')" errorMsg="Password is required"></app-error-msg>
+            </div>
+            <button
+              type="submit"
+              [ngClass]="{'bg-blue-500 text-white': checkIfFormFilled(), 'bg-gray-300 text-gray-600': !checkIfFormFilled() }"
+              class="w-full leading-10 rounded-md mt-10"
+            >Login</button>
+            <p *ngIf="showLoginError" class="text-red-600 text-sm">Username or Password is wrong</p>
+          </div>
+        </form>
       </div>
     </div>
   </div>
