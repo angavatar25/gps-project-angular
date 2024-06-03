@@ -3,6 +3,7 @@ import { GpsCardComponent } from '../../component/gps-card/gps-card.component';
 import { GpsData } from '../../dummy/GPSData';
 import { FormsModule } from '@angular/forms'
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface TGPSData {
   deviceId: string;
@@ -29,7 +30,7 @@ export class GpsSummaryComponent {
   optionsAvailable = [{ value: 'deviceId', label: 'Device ID' }, { value: 'deviceType', label: 'Device Type' }]
   selectedOption = this.optionsAvailable[0];
 
-  constructor() {
+  constructor(private router: Router) {
     this.totalPages = this.generateNumbers(Math.ceil(this.gpsDataCollection.length / this.itemsPerPage));
     this.start = (this.currentPage - 1) * this.itemsPerPage;
     this.end = this.start + this.itemsPerPage;
@@ -64,5 +65,9 @@ export class GpsSummaryComponent {
 
   generateNumbers(count: number): number[] {
     return Array.from({length: count}, (_, i) => i + 1);
+  }
+
+  logOut() {
+    this.router.navigate(['/']);
   }
 }
