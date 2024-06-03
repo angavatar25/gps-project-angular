@@ -1,9 +1,4 @@
-interface TGpsData {
-  deviceId: string;
-  deviceType: string;
-  timestamp: string;
-  location: string;
-}
+import { TGpsData } from "../interface/gps";
 
 export const GpsData: TGpsData[] = [
   { deviceId: 'D-1567', deviceType: 'Aircraft', timestamp: '31-08-2022 10.05', location: 'L1' },

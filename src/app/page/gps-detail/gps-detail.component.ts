@@ -2,13 +2,7 @@ import { Component } from '@angular/core';
 import { ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { GpsData } from '../../dummy/GPSData';
-
-interface TGpsData {
-  deviceId: string;
-  deviceType: string;
-  timestamp: string;
-  location: string;
-}
+import { TGpsData } from '../../interface/gps';
 @Component({
   selector: 'app-gps-detail',
   standalone: true,
