@@ -32,6 +32,7 @@
               <app-error-msg [displayError]="isFieldValid('password')" errorMsg="Password is required"></app-error-msg>
             </div>
             <button
+              id="loginButton"
               type="submit"
               [ngClass]="{'bg-blue-500 text-white': checkIfFormFilled(), 'bg-gray-300 text-gray-600': !checkIfFormFilled() }"
               class="w-full leading-10 rounded-md mt-10"

@@ -12,13 +12,13 @@ import { TGpsData } from '../../interface/gps';
 })
 
 export class GpsDetailComponent {
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartType: ChartType = 'pie';
   private getDeviceId = new URLSearchParams(window.location.search);
-  private deviceId = this.getDeviceId.get('deviceId');
-  private deviceLocation = this.getDeviceId.get('location');
   private gpsFiltered = GpsData.filter(data => data.deviceId === this.deviceId);
   private countedLocation = this.newGpsDataMap(this.gpsFiltered, 'location')
+  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  public pieChartType: ChartType = 'pie';
+  public deviceId = this.getDeviceId.get('deviceId');
+  public deviceLocation = this.getDeviceId.get('location');
   deviceFound = this.gpsFiltered.find((gps) => gps.deviceId === this.deviceId && gps.location === this.deviceLocation) || null;
 
   public pieChartData: ChartData <'bar'> = {

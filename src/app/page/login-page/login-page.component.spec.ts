@@ -20,4 +20,9 @@ describe('LoginPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show a login button', () => {
+    const loginButton = fixture.nativeElement.querySelector('#loginButton')
+    expect(loginButton).toBeTruthy();
+  })
 });
