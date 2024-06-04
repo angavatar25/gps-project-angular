@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GpsDetailComponent } from './gps-detail.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GpsDetailComponent', () => {
   let component: GpsDetailComponent;
@@ -9,7 +10,12 @@ describe('GpsDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GpsDetailComponent]
+      imports: [
+        GpsDetailComponent,
+        RouterTestingModule.withRoutes([
+          { path: 'gps-detail', component: GpsDetailComponent },
+        ])
+      ]
     })
     .compileComponents();
     
