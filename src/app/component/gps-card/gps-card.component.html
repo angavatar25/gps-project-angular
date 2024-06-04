@@ -17,6 +17,7 @@
       <p>{{ gpsData && gpsData.location ? gpsData.location : null }}</p>
     </div>
     <button
+      id="viewDetail"
       class="text-white bg-blue-500 p-2 rounded-md w-fit mx-auto text-sm"
       (click)="handleToGpsDetailPage(gpsData && gpsData.deviceId, gpsData && gpsData.location)"
     >

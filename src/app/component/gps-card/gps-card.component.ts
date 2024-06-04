@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TGpsData } from '../../interface/gps';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gps-card',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './gps-card.component.html',
   styleUrl: './gps-card.component.scss'
 })
