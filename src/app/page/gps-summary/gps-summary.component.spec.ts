@@ -13,11 +13,12 @@ describe('GpsSummaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GpsSummaryComponent,
-      RouterTestingModule.withRoutes([
-        { path: '', component: LoginPageComponent },
-        { path: 'gps-detail', component: GpsDetailComponent },
-      ])
+      imports: [
+        GpsSummaryComponent,
+        RouterTestingModule.withRoutes([
+          { path: '', component: LoginPageComponent },
+          { path: 'gps-detail', component: GpsDetailComponent },
+        ])
       ]
     })
     .compileComponents();
