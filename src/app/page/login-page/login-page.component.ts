@@ -12,15 +12,15 @@ import { ErrorMsgComponent } from '../../component/error-msg/error-msg.component
   styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
+  public userForm = {
+    username: '',
+    password: '',
+  }
   protected username = 'moovd_test'
   protected password = 'moovd_password'
   protected userFormWarning = {
     username: "Username is required",
     password: "Password is required",
-  }
-  protected userForm = {
-    username: '',
-    password: '',
   }
   protected showLoginError = false;
   myForm: any = FormGroup;
