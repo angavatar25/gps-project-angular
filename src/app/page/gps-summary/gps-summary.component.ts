@@ -44,6 +44,8 @@ export class GpsSummaryComponent {
     } else {
       this.gpsDataCollection = gpsData;
     }
+
+    this.totalPages = this.generateNumbers(Math.ceil(this.gpsDataCollection.length / this.itemsPerPage));
   }
 
   inputValue() {
@@ -57,12 +59,12 @@ export class GpsSummaryComponent {
     }
 
     this.displayPage(1, filteredDevice)
-    this.totalPages = this.generateNumbers(Math.ceil(filteredDevice.length / this.itemsPerPage));
   }
 
   sortByLocation() {
     this.sortLocationAsc = !this.sortLocationAsc;
     const sortLocation = GpsData.sort((a, b) => this.sortLocationAsc ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location));
+    this.searchKeyword = '';
 
     this.displayPage(1 ,sortLocation);
   }
