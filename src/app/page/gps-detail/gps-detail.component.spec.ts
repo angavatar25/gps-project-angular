@@ -2,11 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GpsDetailComponent } from './gps-detail.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BehaviorSubject, of } from 'rxjs';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 describe('GpsDetailComponent', () => {
   let component: GpsDetailComponent;
   let fixture: ComponentFixture<GpsDetailComponent>;
   let compiled: HTMLElement;
+  const params = { queryParams: { deviceId: 'D-1567', location: 'L1' }}
+  const mockQueryParams = new BehaviorSubject<any>(params);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,7 +19,15 @@ describe('GpsDetailComponent', () => {
         RouterTestingModule.withRoutes([
           { path: 'gps-detail', component: GpsDetailComponent },
         ])
-      ]
+      ],
+      providers: [
+        {
+          provide: ActivatedRouteSnapshot,
+          useValue: {
+            queryParams: of(mockQueryParams),
+          },
+        },
+      ],
     })
     .compileComponents();
     
